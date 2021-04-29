@@ -1,1 +1,1 @@
-C:37:"PHPUnit\Runner\DefaultTestResultCache":180:{a:2:{s:7:"defects";a:1:{s:28:"ExceptionTest::testException";i:3;}s:5:"times";a:2:{s:28:"ExceptionTest::testException";d:0.002;s:36:"GumballMachineTest::testIfWhellWorks";d:0.001;}}}
+C:37:"PHPUnit\Runner\DefaultTestResultCache":176:{a:2:{s:7:"defects";a:1:{s:28:"ExceptionTest::testException";i:5;}s:5:"times";a:2:{s:28:"ExceptionTest::testException";d:0.002;s:36:"GumballMachineTest::testIfWhellWorks";d:0;}}}
