@@ -1,6 +1,6 @@
 <?php
 
-include('pserver.php');
+include('gtable-test.php');
 
 ?>
 
@@ -115,6 +115,7 @@ include('pserver.php');
 <i class="fa fa-fw fa-envelope"></i>
 
 <span class="d-lg-none">Messages
+
 
 <span class="badge badge-pill badge-primary">12 New</span>
 

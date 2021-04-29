@@ -1,54 +1,46 @@
 <?php
 
-$servername = "localhost";
-
-$username = "agapelee";
-
-$password = "0809";
-
-$dbname = "testdb";
-
-// Create connection
-//
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Include config file
+require_once "config.php";
 
 if (isset($_POST['reg_p'])) {
 
-// receive all input values from the form
+    // receive all input values from the form
+    $gname = mysqli_real_escape_string($link,$_POST['gname']);
 
-$pname = mysqli_real_escape_string($conn,$_POST['pname']);
+    $gmoney = mysqli_real_escape_string($link,$_POST['gamount']);
 
-$price = mysqli_real_escape_string($conn,$_POST['pirce']);
+    $smoney = mysqli_real_escape_string($link,$_POST['samount']);
 
-//$pcat = mysqli_real_escape_string($conn,$_POST['pcat']);
+    $rawdate = htmlentities($_POST['ddate']);
+    $date = date('Y-m-d', strtotime($rawdate));
 
-//$product_details = mysqli_real_escape_string($conn,$_POST['pdetails']);
+    // Check connection
+    if ($link->connect_error) {
 
-// Check connection
+        die("Connection failed: " . $link->connect_error);
 
-if ($conn->connect_error) {
+    }
 
-die("Connection failed: " . $conn->connect_error);
+    $sql = "INSERT INTO goal (user_id, goal_id, goal_name, goal_amount, strarting_amount, current_amount, duedate) VALUES ('1', '1', '$gname', '$gmoney ', '$smoney', '$smoney', '$date')";
+    //$sql = "INSERT INTO goal (goal_name, goal_amount) VALUES ('$pname', '$price')";
 
+    if ($link->query($sql) === TRUE) {
+
+        echo "alert('New record created successfully')";
+
+    } else {
+
+        echo "Error: " . $sql . "<br>" . $link->error;
+
+    }
+    // Close connection
+    mysqli_close($link);
+    header("location: home_glist.php");
 }
 
-$sql = "INSERT INTO goal (user_id, goal_id, goal_name, goal_amount, strarting_amount, current_amount, iscomplete) VALUES ('1', '1','goal-test', '10', '1', '1', '0')";
-//$sql = "INSERT INTO goal (goal_name, goal_amount) VALUES ('$pname', '$price')";
-
-if ($conn->query($sql) === TRUE) {
-
-echo "alert('New record created successfully')";
-
-} else {
-
-echo "Error: " . $sql . "<br>" . $conn->error;
-
-}
-
-}
 
 
-$conn->close();
+
 
 ?>

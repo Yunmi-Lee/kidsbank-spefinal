@@ -1,3 +1,10 @@
+<?php
+
+include('gtable-test.php');
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -17,7 +24,7 @@
 </head>
 
 <body><nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
-    <div class="container"><a class="navbar-brand" href="index.html"><i class="fa fa-child"></i> KIDS BANK</a>
+    <div class="container"><a class="navbar-brand" href="home.php"><i class="fa fa-child"></i> KIDS BANK</a>
         <nav class="navbar navbar-light navbar-expand-md text-right">
             <div class="container-fluid"><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
@@ -46,6 +53,7 @@ function goBack() {
 <p class="my-5"> Add your goal </p>
 </div></div>
     </div>
+    <form action="addgoal.php" method="post">
     <div class="row">
         <div class="col"><label class="labelip" style="margin: 10px 10px 10px 10px;">Goal Name</label><input type="text" id="anyip" style="font-family: 'Open Sans', sans-serif;margin: 10px 0 10px 0;width: 200px;" name="gname"></div>
         <div class="col"><label class="labelip" style="margin: 10px 10px 10px 10px;">Goal Amount</label><input type="text" id="anyip" style="font-family: 'Open Sans', sans-serif;margin: 10px 0 10px 0;width: 200px;" name="gamount"></div>
@@ -53,8 +61,10 @@ function goBack() {
     </div>
     <div class="row" style="height: 105px;">
         <div class="col" style="width: 80px;"><label class="col-form-label labelip" style="margin: 10px 10px 10px 10px;">Due Date</label></div>
-        <div class="col-8" style="width: 210px;"><input class="float-left" id="anyip-1" type="date" style="margin: 20px 0 10px 0;width: 170px;"><i class="fa fa-calendar-o" style="margin: 25px 10px;"></i></div>
+        <div class="col-8" style="width: 210px;"><input class="float-left" id="anyip-1" type="date" name='ddate' style="margin: 20px 0 10px 0;width: 170px;"><i class="fa fa-calendar-o" style="margin: 25px 10px;"></i></div>
+        <button type="submit" class="btn btn-primary" name="reg_p">Submit</button>
     </div>
+    </form>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
