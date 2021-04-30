@@ -1,0 +1,14 @@
+---
+- name: Deploy kidsbank webapp 
+  hosts: kubernetes1
+  become: yes
+  tasks:
+         - name: Pull kidsbank docker image
+           command:
+              cmd: docker pull agapelee/kidsbanktest:latest
+
+         - name: Copy jar file to home directory
+           copy:
+              src: /var/www/html/kidsbank-spefinal/k8s-config/
+              dest: /home/agape02/
+              mode: '0775'
