@@ -1,0 +1,8 @@
+---
+- name: Deploy kidsbank webapp 
+  hosts: kubernetes1
+  become: yes
+  tasks:
+         - name: Pull kidsbank docker image
+           command:
+              cmd: docker pull agapelee/kidsbanktest:latest
