@@ -7,14 +7,14 @@
            command:
               cmd: docker pull agapelee/kidsbanktest:latest
 
-         - name: Copy jar file to home directory
+         - name: Copy k8s files to home directory
            copy:
               src: /var/www/html/kidsbank-spefinal/k8s-config
               dest: /home/agape03
               mode: '0775'
 
          - name: 
-           command:
-              cmd: kubectl apply -f k8s-config/
+           command: create web-app deployments and services.
+              cmd: kubectl apply -f /home/agape03/k8s-config/
 
 
