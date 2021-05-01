@@ -13,8 +13,8 @@
               dest: /home/agape03
               mode: '0775'
 
-         - name: 
-           command: create web-app deployments and services.
+         - name: Create web-app deployments and services.
+           command: 
               cmd: kubectl apply -f /home/agape03/k8s-config/
 
 
