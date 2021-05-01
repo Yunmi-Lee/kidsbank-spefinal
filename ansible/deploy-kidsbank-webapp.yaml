@@ -12,3 +12,9 @@
               src: /var/www/html/kidsbank-spefinal/k8s-config
               dest: /home/agape03
               mode: '0775'
+
+         - name: 
+           command:
+              cmd: kubectl apply -f k8s-config/
+
+
