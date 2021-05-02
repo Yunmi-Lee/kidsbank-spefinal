@@ -5,7 +5,7 @@
   tasks:
          - name: Pull kidsbank docker image
            command:
-              cmd: docker pull agapelee/kidsbanktest:latest
+              cmd: docker pull agapelee/kidsbank:latest
 
          - name: Copy k8s files to home directory
            copy:
@@ -13,8 +13,5 @@
               dest: /home/agape03
               mode: '0775'
 
-         - name: Create web-app deployments and services.
-           command: 
-              cmd: kubectl apply -f /home/agape03/k8s-config/
 
 
