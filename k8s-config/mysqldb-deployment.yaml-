@@ -10,7 +10,7 @@ spec:
   - protocol: "TCP"
     port: 3306
     targetPort: 3306
-  clusterIP: None
+  #clusterIP: None
 ---
 apiVersion: apps/v1 
 kind: Deployment
@@ -18,24 +18,24 @@ metadata:
   name: mysqldb-deployment
   labels:
     app: mysqldb
-    tier: backend
+    #tier: backend
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: mysqldb
-      tier: backend
+      #tier: backend
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         app: mysqldb
-        tier: backend
+        #tier: backend
     spec:
       containers:
-      - image: mysql
-        name: mysql
+      - name: mysqldb
+        image: mysql:8.0
         ports:
         - containerPort: 3306
         volumeMounts:
@@ -43,14 +43,31 @@ spec:
           mountPath: /var/lib/mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: root
+          valueFrom:
+            secretKeyRef:
+              name: mysqldb-secrets
+              key: ROOT_PASSWORD
+          #value: password
         - name: MYSQL_DATABASE
-          value: testdb
+          valueFrom:
+            secretKeyRef:
+              name: mysqldb-secrets
+              key: DATABASE_NAME
+          #value: chat
         - name: MYSQL_USER
-          value: agapelee
+          valueFrom:
+            secretKeyRef:
+              name: mysqldb-secrets
+              key: USERNAME
+          #value: db_user
         - name: MYSQL_PASSWORD
-          value: '0809'
+          valueFrom:
+            secretKeyRef:
+              name: mysqldb-secrets
+              key: PASSWORD
+          #value: password
         args: ["--default-authentication-plugin=mysql_native_password"]
+
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
