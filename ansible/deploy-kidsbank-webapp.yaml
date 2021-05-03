@@ -7,11 +7,15 @@
            command:
               cmd: docker pull agapelee/kidsbank:latest
 
+         - name: Pull mysql 8.0 image
+           command:
+              cmd: docker pull mysql:8.0
+
          - name: Copy k8s files to home directory
            copy:
               src: /var/www/html/kidsbank-spefinal/k8s-config
               dest: /home/agape03
-              mode: '0775'
+              mode: '0664'
 
 
 
