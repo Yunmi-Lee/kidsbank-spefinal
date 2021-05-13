@@ -56,14 +56,3 @@ footer {
   padding: 50px 0 65px;
 }
 
-.col {
-  width: 90%;
-  table-layout: fixed;
-}
-
-body {
-  font-size: 20px;
-  color: #212529;
-  font-family: Lora,Times New Roman,serif;
-}
-

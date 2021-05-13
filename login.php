@@ -134,7 +134,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="form-group"><input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
                     <span class="invalid-feedback"><?php echo $password_err; ?></span>
                 </div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">LOgin</button></div><a class="text-center already" href="#">Don't have an account? Sign up now.</a>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">LOgin</button></div><a class="text-center already" href="signup.php">Don't have an account? Sign up now.</a>
             </form>
         </div>
     </section>

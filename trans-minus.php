@@ -40,14 +40,10 @@ if (isset($_POST['reg_p'])) {
     VALUES ('$value->id', '1', '$gname', '$gmoney ', '$smoney', '$smoney', '$date')";
 
     if ($link->query($sql) === TRUE) {
-        //echo "alert('New record created successfully')"
+        //echo "alert('New record created successfully')";
     } else {
         //    echo "Error: " . $sql . "<br>" . $link->error;
     }
-
-    $_SESSION["uid"] = $value->id;
-//    $_SESSION["goal"] = $gname;
-
     // Close connection
     mysqli_close($link);
     header("location: home_glist.php");
