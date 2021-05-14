@@ -45,7 +45,7 @@ if (isset($_POST['reg_p2'])) {
 
     //update current money
     $link->set_charset('utf8mb4'); // always set the charset
-    $stmt = $link->prepare("SELECT current_amount FROM goal WHERE user_id=? AND goal_name=? limit 1");
+    $stmt = $link->prepare("SELECT * FROM goal WHERE user_id=? AND goal_name=? limit 1");
     $stmt->bind_param('ss', $param1, $param2);
     $stmt->execute();
 
@@ -54,15 +54,26 @@ if (isset($_POST['reg_p2'])) {
     $camount = $value->current_amount;
     $camount = $camount + $amount;
 
+    $gamount = $value->goal_amount;
+    if ($camount >= $gamount) {
+        $compl = '1';
+    } else {
+        $compl = '0';
+    }
+
     //update goal
-    $query = $link->prepare("UPDATE goal SET current_amount=? WHERE user_id=? AND goal_name=?");
-    $query->bind_param('sss', $camount, $param1, $param2);
+    $query = $link->prepare("UPDATE goal SET current_amount=?, iscomplete=? WHERE user_id=? AND goal_name=?");
+    $query->bind_param('ssss', $camount, $compl, $param1, $param2);
     $query->execute();
 
     // Close connection
     mysqli_close($link);
     header("location: gdetail.php");
 }
+
+// Close connection
+mysqli_close($link);
+
 ?>
 
 
@@ -113,7 +124,7 @@ function goBack() {
     </div>
     <div class="row" style="margin: 0;height: 140px;">
         <div class="col" style="margin: 0px 0px 60px 0;height: 80px;width: 100%;"><div>
-<p class="my-5" style="color:blue; font-size:25px; background-color:powderblue;"> + New transaction </p>
+<p class="my-5" style="color:blue; font-size:25px; background-color:powderblue;text-align:center;"> + New transaction </p>
 </div></div>
     </div>
 

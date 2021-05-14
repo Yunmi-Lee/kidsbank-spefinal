@@ -45,7 +45,7 @@ if (isset($_POST['reg_p3'])) {
 
     //update current money
     $link->set_charset('utf8mb4'); // always set the charset
-    $stmt = $link->prepare("SELECT current_amount FROM goal WHERE user_id=? AND goal_name=? limit 1");
+    $stmt = $link->prepare("SELECT * FROM goal WHERE user_id=? AND goal_name=? limit 1");
     $stmt->bind_param('ss', $param1, $param2);
     $stmt->execute();
 
@@ -54,9 +54,16 @@ if (isset($_POST['reg_p3'])) {
     $camount = $value->current_amount;
     $camount = $camount - $amount;
 
+    $gamount = $value->goal_amount;
+    if ($camount >= $gamount) {
+        $compl = '1';
+    } else {
+        $compl = '0';
+    }
+
     //update goal
-    $query = $link->prepare("UPDATE goal SET current_amount=? WHERE user_id=? AND goal_name=?");
-    $query->bind_param('sss', $camount, $param1, $param2);
+    $query = $link->prepare("UPDATE goal SET current_amount=?, iscomplete=? WHERE user_id=? AND goal_name=?");
+    $query->bind_param('ssss', $camount, $compl, $param1, $param2);
     $query->execute();
 
     // Close connection
@@ -64,6 +71,10 @@ if (isset($_POST['reg_p3'])) {
     header("location: gdetail.php");
 
 }
+
+// Close connection
+mysqli_close($link);
+
 ?>
 
 <!DOCTYPE html>
@@ -114,7 +125,7 @@ function goBack() {
     </div>
     <div class="row" style="margin: 0;height: 140px;">
         <div class="col" style="margin: 0px 0px 60px 0;height: 80px;width: 100%;"><div>
-<p class="my-5" style="color:red; font-size:25px; background-color:pink;" > - New transaction </p>
+<p class="my-5" style="color:red; font-size:25px; background-color:pink;text-align:center;" > - New transaction </p>
 </div></div>
     </div>
 
@@ -127,7 +138,7 @@ function goBack() {
         <div class="col-3" style="width: 40px;height: 60px;"><label class="col-form-label labelip" style="margin: 10px 10px 10px 10px;width: 40px;">Date</label></div>
         <div class="col-9" style="width: 280px;"><input class="float-left" id="anyip-1" type="date" value="<?php echo $today; ?>" name='tdate' style="margin: 20px 0 10px 0;width: 170px;"><i class="fa fa-calendar-o" style="margin: 25px 10px;"></i></div>
     </div>
-    <button id="submit" class="btn btn-primary btn-block" name="reg_p3" style="margin: 40px 0 0 0;background-color: rgb(239,89,89);">Submit</button>
+    <button id="submit" class="btn btn-primary btn-block" name="reg_p3" style="margin: 40px 0 0 0;">Submit</button>
     </form>
 
     <script src="assets/js/jquery.min.js"></script>

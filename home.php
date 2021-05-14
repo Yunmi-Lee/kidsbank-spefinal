@@ -8,6 +8,36 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
+require_once "config.php";
+
+$name = htmlspecialchars($_SESSION["username"]);
+$first = 0;
+
+$link->set_charset('utf8mb4'); // always set the charset
+$stmt = $link->prepare("SELECT id FROM users WHERE username=? limit 1");
+$stmt->bind_param('s', $name);
+$stmt->execute();
+$result = $stmt->get_result();
+$value = $result->fetch_object();
+$uid = $value->id; //get user id
+
+if(empty($_SESSION["uid"])){
+    $_SESSION["uid"] = $uid;
+}
+
+$query = $link->prepare("SELECT * FROM goal WHERE user_id=?");
+$query->bind_param('s', $uid);
+$query->execute();
+$result1 = $query->get_result();
+$value = $result1->fetch_object();
+if ($value) {
+    $first = 0;
+} else {
+    $first = 1;
+}
+
+// Close connection
+mysqli_close($link);
 ?>
 
 <!DOCTYPE html>
@@ -56,9 +86,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <hr>
 
 
-    <div class="row" style="margin: 80px 0 0 0;">
-        <h5 class="my-5" style= "margin: 0px 0px 0px 20px;"> Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>!
-        <p style="font-family: 'Open Sans', sans-serif;color: var(--gray-dark);margin: 0px 0px 0px 0px;font-size: 10px;"><br>Logged in: <?php echo date("Y-m-d") . "  " . date("l") . "  " . date("h:i:sa"); ?> </p>
+    <div class="row" style="margin: 80px 0 30px 0;">
+        <h5 class="my-5" style= "margin: 0px 0px 0px 20px;font-size: 30px;"> Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>!
+        <a style="font-family: 'Open Sans', sans-serif;color: var(--gray-dark);margin: 0px 0px 0px 0px;font-size: 10px;">Logged in: <?php echo date("Y-m-d") . "  " . date("l") . "  " . date("h:i:sa"); ?> </a>
         </h5>
 
     </div>
@@ -69,16 +99,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
 
 
-    <div class="row" style="margin: 0;height: 300px;background: url(&quot;assets/img/main1.jpg&quot;);background-size: cover;">
+    <div class="row" style="margin: 70px 0px 0px 0px;height: 300px;background: url(&quot;assets/img/main1.jpg&quot;);background-size: cover;">
         <div class="col" style="margin: 0px 20px 60px 0;height: 150px;">
-        <p class="myp-1" style="font-family: 'Open Sans', sans-serif;color: black;text-align: center;margin: 20px 20px 0px 35px;height: 50px;font-size: 30px;background: rgba(255,253,252,0.44);"> Please add your goal!</p>
+        <p class="myp-1" style="font-family: 'Open Sans', sans-serif;color: black;text-align: center;margin: 20px 20px 0px 35px;height: 50px;font-size: 25px;background: rgba(255,253,252,0.44);"> <b>Please add your
+        <?php
+        if ($first) {
+            echo "first";
+        } ?>
+        goal ! </b><i class="icon-diamond"></i></p>
         </div>
     </div>
 
 
     <footer id="footer">
-    <div style= "background: #343a40; text-align: center; margin: 0px 0px 0px 0px; padding:10px">
-        <p style= "color:#eee; font-family: raleway; font-size: 15px">Copyright (c) 2021 IIITB Msc. Digital Society DT2019009 Yunmi Lee</p>
+    <div style= "background: #343a40; text-align: center; margin: 20px 0px 0px 0px; padding:10px">
+        <p style= "color:#eee; font-family: raleway; font-size: 14px">Copyright (c) 2021 IIITB Msc. Digital Society DT2019009 Yunmi Lee</p>
     </div>
     </footer>
 

@@ -1,3 +1,24 @@
+<?php
+// Initialize the session
+session_start();
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+
+require_once "config.php";
+
+$uid = $_SESSION["uid"];
+$link->set_charset('utf8mb4'); // always set the charset
+$query = $link->prepare("SELECT * FROM goal WHERE user_id=? and iscomplete=1");
+$query->bind_param('s', $uid);
+$query->execute();
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -23,9 +44,9 @@
             <div class="container-fluid"><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active" href="#">Log out</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Statistics</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">About us</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="logout.php">Log out</a></li>
+                        <li class="nav-item"><a class="nav-link" href="statistics.php">Statistics</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
                     </ul>
                 </div>
             </div>
@@ -57,30 +78,45 @@ function goBack() {
                     <thead>
                         <tr>
                             <th>Goal name</th>
+                            <th>Saved Amount</th>
+                            <th>Completed Date</th>
                             <th>Progress</th>
-                            <th>Due Date</th>
-                            <th>Current Amount</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Cell 1</td>
-                            <td><div class="progress">
-    <div class="progress-bar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div>
-</div>Cell 2</td>
-                            <td>Cell 3</td>
-                            <td>Cell 4</td>
-                        </tr>
-                        <tr>
-                            <td>Cell 3</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div>
-                                </div>Cell 4
-                            </td>
-                            <td>Cell 3</td>
-                            <td>Cell 4</td>
-                        </tr>
+
+                    <?php
+                    if ($result = $query->get_result()) {
+                            while($value = $result->fetch_object())
+                            {
+                                        $field1name = $value->goal_name;
+                                        $field2name = $value->goal_amount;
+                                        $field4name = $value->current_amount;
+                                        $prog = round(($field4name/$field2name)*100);
+                                        $date = date_create($value->duedate);
+                                        $field5name = date_format($date,"Y-m-d");
+
+                                                    echo '<tr>
+                                                              <td>
+                                                                  <a href="gdetail.php? gname='.$field1name.'">
+                                                                    '.$field1name.'
+                                                                  </a>
+                                                              </td>
+                                                              <td>$ '.$field4name.'</td>
+                                                              <td>'.$field5name.'</td>
+                                                              <td>
+                                                                  <div class="progress">
+                                                                  <div class="progress-bar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: '.$prog.'%;"> '.$prog.'%</div>
+                                                                  </div> '.$prog.'%
+                                                              </td>
+                                                    </tr>';
+                            }
+                            $result->free();
+                    }
+                    // Close connection
+                    mysqli_close($link);
+                    ?>
+
                     </tbody>
                 </table>
             </div>
@@ -88,7 +124,7 @@ function goBack() {
     </div><footer id="footer">
     
     <div style= "background: #343a40; text-align: center; margin: 0px 0px 0px 0px; padding:10px">
-        <p style= "color:#eee; font-family: raleway; font-size: 15px">Copyright (c) 2021 IIITB Msc. Digital Society DT2019009 Yunmi Lee</p>
+        <p style= "color:#eee; font-family: raleway; font-size: 14px">Copyright (c) 2021 IIITB Msc. Digital Society DT2019009 Yunmi Lee</p>
     </div>
 </footer>
     <script src="assets/js/jquery.min.js"></script>

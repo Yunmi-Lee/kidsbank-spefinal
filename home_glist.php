@@ -11,7 +11,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 require_once "config.php";
 
 $name = htmlspecialchars($_SESSION["username"]);
-
+$uid = $_SESSION["uid"];
+/*
 $link->set_charset('utf8mb4'); // always set the charset
 $stmt = $link->prepare("SELECT id FROM users WHERE username=? limit 1");
 $stmt->bind_param('s', $name);
@@ -23,6 +24,7 @@ $uid = $value->id; //get user id
 if(empty($_SESSION["uid"])){
     $_SESSION["uid"] = $uid;
 }
+*/
 
 $query = $link->prepare("SELECT * FROM goal WHERE user_id=?");
 $query->bind_param('s', $uid);
@@ -136,6 +138,8 @@ $query->execute();
                             }
                     	    $result->free();
                     }
+                    // Close connection
+                    mysqli_close($link);
                     ?>
 
                     </tbody>
@@ -146,7 +150,7 @@ $query->execute();
 
     <footer id="footer">
     <div style= "background: #343a40; text-align: center; margin: 0px 0px 0px 0px; padding:10px">
-        <p style= "color:#eee; font-family: raleway; font-size: 15px">Copyright (c) 2021 IIITB Msc. Digital Society DT2019009 Yunmi Lee</p>
+        <p style= "color:#eee; font-family: raleway; font-size: 14px">Copyright (c) 2021 IIITB Msc. Digital Society DT2019009 Yunmi Lee</p>
     </div>
     </footer>
     <script src="assets/js/jquery.min.js"></script>

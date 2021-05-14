@@ -23,6 +23,7 @@ $cmoney = $value->current_amount;
 $tmoney = $value->goal_amount;
 $prog = round(($cmoney/$tmoney)*100, 1);
 $gdate = $value->duedate;
+$cpl = $value->iscomplete;
 
 $query = $link->prepare("SELECT * FROM trans WHERE user_id=? AND goal_name=?");
 $query->bind_param('ss', $uid, $gname);
@@ -86,7 +87,12 @@ function goBack() {
             <div class="progress">
                 <div class="progress-bar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $prog;?>%;"><?php echo $prog;?>%</div>
             </div>
-            <p style="font-family: 'Open Sans', sans-serif;color: var(--gray-dark);text-align: left;margin: 10px 0px 10px;font-size: 10px;">Due date: <?php echo $gdate; ?></p>
+            <p style="font-family: 'Open Sans', sans-serif;color: var(--gray-dark);text-align: left;margin: 10px 0px 10px;font-size: 10px;">Due date: <?php echo $gdate; ?>&nbsp;&nbsp;
+            <?php
+            if ($cpl) {
+                echo '<a href="complete.php" style="font-size: 15px; color: red;"> <b>Complete!</b> </a>';
+            } ?>
+            </p>
         </div>
     </div>
     <div class="row" style="margin: 0;height: 100px;">
@@ -94,7 +100,7 @@ function goBack() {
             <p class="myp" style="font-family: 'Open Sans', sans-serif;color: var(--gray-dark);text-align: left;margin: 20px 2px 0px 15px;width: 130px;">Transactions</p>
         </div>
         <div class="col-2" style="height: 50px;margin: 60px 2px 3px 4px;"><a class="btn btn-primary btn-block" role="button" id="rbtn" href="addtrans-plus.php" style="height: 50px;width: 50px;padding: 0;"><i class="fa fa-plus" style="margin: 17px 2px 3px 4px;"></i></a></div>
-        <div class="col-2" style="height: 50px;margin: 60px 2px 3px 4px;"><a class="btn btn-primary btn-block" role="button" id="rbtn" href="addtrans-minus.php" style="height: 50px;width: 50px;padding: 0;"><i class="fa fa-minus" style="margin: 17px 2px 3px 4px;"></i></a></div>
+        <div class="col-2" style="height: 50px;margin: 60px 2px 3px 4px;"><a class="btn btn-primary btn-block" role="button" id="rbtn" href="addtrans-minus.php" style="height: 50px;width: 50px;padding: 0;background-color: rgb(239,89,89);border-style: none;"><i class="fa fa-minus" style="margin: 17px 2px 3px 4px;"></i></a></div>
 
     </div>
 
@@ -137,6 +143,8 @@ function goBack() {
                             }
                     	    $result->free();
                     }
+                    // Close connection
+                    mysqli_close($link);
                     ?>
 
                     </tbody>

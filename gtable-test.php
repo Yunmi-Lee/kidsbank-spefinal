@@ -45,7 +45,9 @@ if (isset($_POST['reg_p'])) {
         //    echo "Error: " . $sql . "<br>" . $link->error;
     }
 
-    $_SESSION["uid"] = $value->id;
+    if(empty($_SESSION["uid"])){
+        $_SESSION["uid"] = $uid;
+    }
 //    $_SESSION["goal"] = $gname;
 
     // Close connection
