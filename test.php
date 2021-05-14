@@ -15,7 +15,7 @@ $total_amount = 0;
 $saved_total_p_goal = 0;
 $inx = 1;
 
-$chart = array ( //2x20 multidimensional array
+$chart = array ( //2x20 two dimensional array
   array("NULL", 0), array("NULL", 0), array("NULL", 0), array("NULL", 0),
   array("NULL", 0), array("NULL", 0), array("NULL", 0), array("NULL", 0),
   array("NULL", 0), array("NULL", 0), array("NULL", 0), array("NULL", 0),
