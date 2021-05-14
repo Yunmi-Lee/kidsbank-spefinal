@@ -42,7 +42,7 @@
         </div>
     </section>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
-        <div class="container"><a class="navbar-brand" href="index.html" style="text-align: left;"><i class="fa fa-child"></i>&nbsp;KIDS BANK</a></div>
+        <div class="container"><a class="navbar-brand" href="home.php" style="text-align: left;"><i class="fa fa-child"></i>&nbsp;KIDS BANK</a></div>
     </nav>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

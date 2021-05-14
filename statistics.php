@@ -143,6 +143,7 @@ mysqli_close($link);
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link active" href="logout.php">Log out</a></li>
                         <li class="nav-item"><a class="nav-link" href="home_glist.php">My Goals</a></li>
+                        <li class="nav-item"><a class="nav-link" href="complete.php">Completed</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
                     </ul>
                 </div>
@@ -163,7 +164,7 @@ mysqli_close($link);
     <div class="row" style="margin: 0;height: 160px;">
         <div class="col" style="margin: 0px 0px 10px 0px;height: 80px;width: 100%;">
         <div>
-        <p class="my-5" style="color:black; font-size:25px; background-color:lightyellow; text-align:center; border-style: outset;border-width: 2px;border-color: #eee"> Statistics </p>
+        <p class="my-5" style="color:black; font-size:25px; background-color:#eee; text-align:center; border-style: outset;border-width: 2px;border-color: #eee"> Statistics </p>
         </div></div>
     </div>
 

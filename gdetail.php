@@ -59,6 +59,7 @@ $query->execute();
                         <li class="nav-item"><a class="nav-link active" href="logout.php">Log out</a></li>
                         <li class="nav-item"><a class="nav-link" href="home_glist.php">My Goals</a></li>
                         <li class="nav-item"><a class="nav-link" href="statistics.php">Statistics</a></li>
+                        <li class="nav-item"><a class="nav-link" href="complete.php">Completed</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
                     </ul>
                 </div>
@@ -78,7 +79,7 @@ function goBack() {
     </div>
     <div class="row" style="margin: 0;">
         <div class="col offset-2" style="margin: 0px 20px 60px 0;height: 80px;"><div>
-<p class="my-5"> Goal Name<b> <?php echo $_SESSION["goal"] ?><?php echo $_SESSION["uid"] ?></b> <i class="fa fa-star"></i></p>
+<p class="my-5"> Goal <i class="fa fa-star"></i> <b> <?php echo $_SESSION["goal"] ?></b> <i class="fa fa-star"></i></p>
 </div></div>
     </div>
     <div class="row" style="margin: 0;">

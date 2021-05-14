@@ -104,6 +104,7 @@ mysqli_close($link);
                         <li class="nav-item"><a class="nav-link active" href="logout.php">Log out</a></li>
                         <li class="nav-item"><a class="nav-link" href="home_glist.php">My Goals</a></li>
                         <li class="nav-item"><a class="nav-link" href="statistics.php">Statistics</a></li>
+                        <li class="nav-item"><a class="nav-link" href="complete.php">Completed</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
                 </div>
             </div>
@@ -119,7 +120,7 @@ function goBack() {
 }
 </script></div>
         <div class="col" style="height: 30px;">
-            <p style="margin: 0;color: #000000;font-family: 'Open Sans', sans-serif;">Goal <?php echo $_SESSION["goal"]?> <?php echo $_SESSION["uid"]?></p>
+            <p style="margin: 0;color: #000000;font-family: 'Open Sans', sans-serif;"><i class="fa fa-star"></i> <b> <?php echo $_SESSION["goal"] ?></b> <i class="fa fa-star"></i></p>
         </div>
     </div>
     <div class="row" style="margin: 0;height: 140px;">

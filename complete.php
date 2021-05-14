@@ -39,12 +39,13 @@ $query->execute();
 </head>
 
 <body style="height: 20px;"><nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
-    <div class="container"><a class="navbar-brand" href="index.html"><i class="fa fa-child"></i> KIDS BANK</a>
+    <div class="container"><a class="navbar-brand" href="home.php"><i class="fa fa-child"></i> KIDS BANK</a>
         <nav class="navbar navbar-light navbar-expand-md text-right">
             <div class="container-fluid"><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link active" href="logout.php">Log out</a></li>
+                        <li class="nav-item"><a class="nav-link" href="home_glist.php">My Goals</a></li>
                         <li class="nav-item"><a class="nav-link" href="statistics.php">Statistics</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
                     </ul>
@@ -63,9 +64,9 @@ function goBack() {
 </script></div>
         <div class="col" style="height: 30px;"></div>
     </div>
-    <div class="row" style="margin: 0;height: 140px;background: url(&quot;https://cdn.bootstrapstudio.io/placeholders/1400x800.png&quot;);">
+    <div class="row" style="margin: 20px 0px 0px 0px;height: 140px;background: url(&quot;https://cdn.bootstrapstudio.io/placeholders/1400x800.png&quot;);">
         <div class="col" style="margin: 0px 0px 60px 0;height: 80px;width: 100%;"><div>
-<p class="my-5" style="color:black; font-size:25px; background-color:#17a2b8; text-align:center; width:100%"> Completed goals </p>
+<p class="my-5" style="color:black; font-size:25px; background-color: #eee; text-align:center; width:100%"> Completed goals </p>
 </div></div>
     </div>
     <div class="col">
@@ -121,12 +122,14 @@ function goBack() {
                 </table>
             </div>
         </div>
-    </div><footer id="footer">
-    
+    </div>
+
+    <footer id="footer">
     <div style= "background: #343a40; text-align: center; margin: 0px 0px 0px 0px; padding:10px">
         <p style= "color:#eee; font-family: raleway; font-size: 14px">Copyright (c) 2021 IIITB Msc. Digital Society DT2019009 Yunmi Lee</p>
     </div>
-</footer>
+    </footer>
+
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>

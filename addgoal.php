@@ -31,8 +31,10 @@ include('gtable-test.php');
             <div class="container-fluid"><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active" href="#">Log out</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="logout.php">Log out</a></li>
+                        <li class="nav-item"><a class="nav-link" href="home_glist.php">My Goals</a></li>
                         <li class="nav-item"><a class="nav-link" href="statistics.php">Statistics</a></li>
+                        <li class="nav-item"><a class="nav-link" href="complete.php">Completed</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
                     </ul>
                 </div>
@@ -57,7 +59,7 @@ include('gtable-test.php');
     <div class="row" style="margin: 0;height: 140px;">
         <div class="col" style="margin: 0px 20px 60px 0;height: 80px;">
             <div>
-                <p class="my-5"> Add your goal </p>
+                <p class="my-5" style="color:black; font-size:25px; background-color:#eee; text-align:center; width:100%"> Add your goal <i class="fa fa-star"></i></p>
             </div>
         </div>
     </div>
@@ -74,6 +76,12 @@ include('gtable-test.php');
     </div>
     <button id="submit" class="btn btn-primary btn-block" name="reg_p">Submit</button>
     </form>
+
+    <footer id="footer">
+    <div style= "background: #343a40; text-align: center; margin: 0px 0px 0px 0px; padding:10px">
+        <p style= "color:#eee; font-family: raleway; font-size: 13.5px">Copyright (c) 2021 IIITB Msc. Digital Society DT2019009 Yunmi Lee</p>
+    </div>
+    </footer>
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

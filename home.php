@@ -75,6 +75,7 @@ mysqli_close($link);
                         <li class="nav-item"><a class="nav-link active" href="logout.php">Log out</a></li>
                         <li class="nav-item"><a class="nav-link" href="home_glist.php">My Goals</a></li>
                         <li class="nav-item"><a class="nav-link" href="statistics.php">Statistics</a></li>
+                        <li class="nav-item"><a class="nav-link" href="complete.php">Completed</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
                         <li class="nav-item"><a class="nav-link" href="reset-pw.php">Reset PW</a></li>
                     </ul>
@@ -87,7 +88,7 @@ mysqli_close($link);
 
 
     <div class="row" style="margin: 80px 0 30px 0;">
-        <h5 class="my-5" style= "margin: 0px 0px 0px 20px;font-size: 30px;"> Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>!
+        <h5 class="my-5" style= "margin: 0px 0px 0px 20px;font-size: 30px;"> Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> !
         <a style="font-family: 'Open Sans', sans-serif;color: var(--gray-dark);margin: 0px 0px 0px 0px;font-size: 10px;">Logged in: <?php echo date("Y-m-d") . "  " . date("l") . "  " . date("h:i:sa"); ?> </a>
         </h5>
 
@@ -113,7 +114,7 @@ mysqli_close($link);
 
     <footer id="footer">
     <div style= "background: #343a40; text-align: center; margin: 20px 0px 0px 0px; padding:10px">
-        <p style= "color:#eee; font-family: raleway; font-size: 14px">Copyright (c) 2021 IIITB Msc. Digital Society DT2019009 Yunmi Lee</p>
+        <p style= "color:#eee; font-family: raleway; font-size: 13.5px">Copyright (c) 2021 IIITB Msc. Digital Society DT2019009 Yunmi Lee</p>
     </div>
     </footer>
 

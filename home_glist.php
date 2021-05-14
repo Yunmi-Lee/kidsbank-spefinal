@@ -60,6 +60,7 @@ $query->execute();
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link active" href="logout.php">Log out</a></li>
                         <li class="nav-item"><a class="nav-link" href="statistics.php">Statistics</a></li>
+                        <li class="nav-item"><a class="nav-link" href="complete.php">Completed</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
                         <li class="nav-item"><a class="nav-link" href="reset-pw.php">Reset PW</a></li>
                     </ul>
@@ -83,7 +84,7 @@ $query->execute();
     <div class="row" style="margin: 0;">
         <div class="col" style="margin: 0px 20px 60px 0;height: 80px;">
         <div>
-        <p class="my-5">Username<b> <?php echo $name;?></b> Goals <i class="fa fa-star"></i></p>
+        <p class="my-5">User<b> <?php echo $name;?>'s</b> Goals <i class="fa fa-star"></i></p>
         </div>
         </div>
     </div>
@@ -150,7 +151,7 @@ $query->execute();
 
     <footer id="footer">
     <div style= "background: #343a40; text-align: center; margin: 0px 0px 0px 0px; padding:10px">
-        <p style= "color:#eee; font-family: raleway; font-size: 14px">Copyright (c) 2021 IIITB Msc. Digital Society DT2019009 Yunmi Lee</p>
+        <p style= "color:#eee; font-family: raleway; font-size: 13.5px">Copyright (c) 2021 IIITB Msc. Digital Society DT2019009 Yunmi Lee</p>
     </div>
     </footer>
     <script src="assets/js/jquery.min.js"></script>
