@@ -133,6 +133,7 @@ mysqli_close($link);
     <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
     <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
 <body><nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
@@ -185,15 +186,34 @@ mysqli_close($link);
         </div>
     </div>
 
-     <div class="row" >
-        <div class="col" style="margin: 40px 20px 20px 20px;height: 40px;">
-            <p style="font-family: 'Open Sans', sans-serif;color: var(--gray-dark);text-align: right;margin: 10px;font-size: 15px;">Total Progress&nbsp; $<?php echo $current_total;?> / $<?php echo $total_amount;?> ( <?php echo $total_prog; ?>% )</p>
-            <div class="progress">
-                <div class="progress-bar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $total_prog;?>%;"><?php echo $total_prog;?>%</div>
-            </div>
+    <canvas id="myChart" style="width:100%;max-width:600px;margin: 40px 0px 0px 0px"></canvas>
 
-        </div>
-    </div>
+    <script>
+    var xValues = ["Saved $<?php echo $current_total;?>", "Left $<?php echo $left_total;?>"];
+    var yValues = [<?php echo $current_total;?>, <?php echo $left_total;?>];
+    var barColors = [
+      "#00aba9",
+      "#1e7145"
+    ];
+
+    new Chart("myChart", {
+      type: "pie",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Total Progress: $<?php echo $current_total;?> / $<?php echo $total_amount;?> ( <?php echo $total_prog; ?>% )"
+        }
+      }
+    });
+    </script>
+
 
     <div style="margin: 60px 0px 50px 0px;"><canvas data-bss-chart="{&quot;type&quot;:&quot;bar&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;January&quot;,&quot;February&quot;,&quot;March&quot;,&quot;April&quot;,&quot;May&quot;,&quot;June&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Revenue&quot;,&quot;backgroundColor&quot;:&quot;#4e73df&quot;,&quot;borderColor&quot;:&quot;#4e73df&quot;,&quot;data&quot;:[&quot;4500&quot;,&quot;5300&quot;,&quot;6250&quot;,&quot;7800&quot;,&quot;9800&quot;,&quot;15000&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:true,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{}}}"></canvas></div>
     <a class="btn btn-primary btn-block" role="button" href="complete.php" style="margin: 50px 0px 0px 0px;"><i class="icon-pin"></i>&nbsp; Completed goal&nbsp;</a><footer id="footer">
