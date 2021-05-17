@@ -16,7 +16,7 @@
            environment:
               KUBECONFIG: /home/agape03/.kube/config
          
-         - name: Remove containerized docker image to prevent stack in the storage
-           command:
-              cmd: docker rmi agapelee/kidsbank:latest
+ #       - name: Remove containerized docker image to prevent stack in the storage
+ #         command:
+ #            cmd: docker rmi agapelee/kidsbank:latest
 
