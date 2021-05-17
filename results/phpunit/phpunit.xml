@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="Project Test Suite" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.001175">
-    <testsuite name="GumballMachineTest" file="/var/www/html/kidsbank-spefinal/tests/GumballMachineTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.001175">
-      <testcase name="testIfWhellWorks" class="GumballMachineTest" classname="GumballMachineTest" file="/var/www/html/kidsbank-spefinal/tests/GumballMachineTest.php" line="15" assertions="1" time="0.001175"/>
+  <testsuite name="Project Test Suite" tests="17" assertions="30" errors="0" warnings="0" failures="0" skipped="0" time="0.006607">
+    <testsuite name="ChartArrayTest" file="/var/www/html/kidsbank-spefinal/tests/ChartArrayTest.php" tests="3" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="0.005474">
+      <testcase name="testChartArraySize" class="ChartArrayTest" classname="ChartArrayTest" file="/var/www/html/kidsbank-spefinal/tests/ChartArrayTest.php" line="8" assertions="1" time="0.003359"/>
+      <testcase name="testChartPush" class="ChartArrayTest" classname="ChartArrayTest" file="/var/www/html/kidsbank-spefinal/tests/ChartArrayTest.php" line="15" assertions="2" time="0.002036"/>
+      <testcase name="testChartPop" class="ChartArrayTest" classname="ChartArrayTest" file="/var/www/html/kidsbank-spefinal/tests/ChartArrayTest.php" line="26" assertions="2" time="0.000079"/>
+    </testsuite>
+    <testsuite name="FunctionsTest" file="/var/www/html/kidsbank-spefinal/tests/FunctionsTest.php" tests="12" assertions="12" errors="0" warnings="0" failures="0" skipped="0" time="0.000916">
+      <testsuite name="FunctionsTest::testAdd" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.000196">
+        <testcase name="testAdd with data set #0" class="FunctionsTest" classname="FunctionsTest" file="/var/www/html/kidsbank-spefinal/tests/FunctionsTest.php" line="11" assertions="1" time="0.000082"/>
+        <testcase name="testAdd with data set #1" class="FunctionsTest" classname="FunctionsTest" file="/var/www/html/kidsbank-spefinal/tests/FunctionsTest.php" line="11" assertions="1" time="0.000043"/>
+        <testcase name="testAdd with data set #2" class="FunctionsTest" classname="FunctionsTest" file="/var/www/html/kidsbank-spefinal/tests/FunctionsTest.php" line="11" assertions="1" time="0.000034"/>
+        <testcase name="testAdd with data set #3" class="FunctionsTest" classname="FunctionsTest" file="/var/www/html/kidsbank-spefinal/tests/FunctionsTest.php" line="11" assertions="1" time="0.000037"/>
+      </testsuite>
+      <testsuite name="FunctionsTest::testMinus" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.000174">
+        <testcase name="testMinus with data set #0" class="FunctionsTest" classname="FunctionsTest" file="/var/www/html/kidsbank-spefinal/tests/FunctionsTest.php" line="29" assertions="1" time="0.000061"/>
+        <testcase name="testMinus with data set #1" class="FunctionsTest" classname="FunctionsTest" file="/var/www/html/kidsbank-spefinal/tests/FunctionsTest.php" line="29" assertions="1" time="0.000037"/>
+        <testcase name="testMinus with data set #2" class="FunctionsTest" classname="FunctionsTest" file="/var/www/html/kidsbank-spefinal/tests/FunctionsTest.php" line="29" assertions="1" time="0.000038"/>
+        <testcase name="testMinus with data set #3" class="FunctionsTest" classname="FunctionsTest" file="/var/www/html/kidsbank-spefinal/tests/FunctionsTest.php" line="29" assertions="1" time="0.000038"/>
+      </testsuite>
+      <testsuite name="FunctionsTest::testProgress" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.000546">
+        <testcase name="testProgress with data set #0" class="FunctionsTest" classname="FunctionsTest" file="/var/www/html/kidsbank-spefinal/tests/FunctionsTest.php" line="47" assertions="1" time="0.000083"/>
+        <testcase name="testProgress with data set #1" class="FunctionsTest" classname="FunctionsTest" file="/var/www/html/kidsbank-spefinal/tests/FunctionsTest.php" line="47" assertions="1" time="0.000110"/>
+        <testcase name="testProgress with data set #2" class="FunctionsTest" classname="FunctionsTest" file="/var/www/html/kidsbank-spefinal/tests/FunctionsTest.php" line="47" assertions="1" time="0.000205"/>
+        <testcase name="testProgress with data set #3" class="FunctionsTest" classname="FunctionsTest" file="/var/www/html/kidsbank-spefinal/tests/FunctionsTest.php" line="47" assertions="1" time="0.000148"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="StatisticsVarsTest" file="/var/www/html/kidsbank-spefinal/tests/StatisticsVarsTest.php" tests="2" assertions="13" errors="0" warnings="0" failures="0" skipped="0" time="0.000217">
+      <testcase name="testIfGoalVarsWellInitialed" class="StatisticsVarsTest" classname="StatisticsVarsTest" file="/var/www/html/kidsbank-spefinal/tests/StatisticsVarsTest.php" line="8" assertions="8" time="0.000069"/>
+      <testcase name="testIfTransVarsWellInitialed" class="StatisticsVarsTest" classname="StatisticsVarsTest" file="/var/www/html/kidsbank-spefinal/tests/StatisticsVarsTest.php" line="20" assertions="5" time="0.000148"/>
     </testsuite>
   </testsuite>
 </testsuites>
