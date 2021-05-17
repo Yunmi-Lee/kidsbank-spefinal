@@ -5,7 +5,7 @@
   tasks:
          - name: Create the web-app deployments and services
            command: 
-              cmd: kubectl apply -f /home/agape03/k8s-config/kidsbank-deployment.yaml
+              cmd: kubectl apply -f /home/agape03/k8s-config/
            environment:
               KUBECONFIG: /home/agape03/.kube/config
 
@@ -15,4 +15,8 @@
               cmd: kubectl rollout restart deployment.apps/kidsbank-deployment
            environment:
               KUBECONFIG: /home/agape03/.kube/config
-              
+         
+         - name: Remove containerized docker image to prevent stack in the storage
+           command:
+              cmd: docker rmi agapelee/kidsbank:latest
+

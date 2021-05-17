@@ -7,9 +7,9 @@
            command:
               cmd: docker pull agapelee/kidsbank:latest
 
-         - name: Pull mysql 8.0 image
+         - name: Pull mysql latest image
            command:
-              cmd: docker pull mysql:8.0
+              cmd: docker pull mysql:latest
 
          - name: Copy k8s files to home directory
            copy:
