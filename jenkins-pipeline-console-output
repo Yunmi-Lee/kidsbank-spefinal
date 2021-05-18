@@ -1,0 +1,185 @@
+Started by user Yunmi Lee
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/KidsbankPipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Git Clone)
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Yunmi-Lee/kidsbank-spefinal.git # timeout=10
+Fetching upstream changes from https://github.com/Yunmi-Lee/kidsbank-spefinal.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+ > git fetch --tags --force --progress -- https://github.com/Yunmi-Lee/kidsbank-spefinal.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 549d3f680dff6eea6ed5b0839610c4ca44df2502 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 549d3f680dff6eea6ed5b0839610c4ca44df2502 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D main # timeout=10
+ > git checkout -b main 549d3f680dff6eea6ed5b0839610c4ca44df2502 # timeout=10
+Commit message: "change connect"
+ > git rev-list --no-walk 549d3f680dff6eea6ed5b0839610c4ca44df2502 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (PHPUnit Test)
+[Pipeline] sh
++ phpunit --log-junit results/phpunit/phpunit.xml -c tests/phpunit.xml
+PHPUnit 8.5.2 by Sebastian Bergmann and contributors.
+
+  Warning - The configuration file did not pass validation!
+  The following problems have been detected:
+
+  Line 11:
+  - Element 'phpunit', attribute 'syntaxCheck': The attribute 'syntaxCheck' is not allowed.
+
+  Test results may not be as expected.
+
+
+.................                                                 17 / 17 (100%)
+
+Time: 154 ms, Memory: 4.00 MB
+
+OK (17 tests, 30 assertions)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Containerization)
+[Pipeline] sh
++ docker build -t agapelee/kidsbank:latest .
+Sending build context to Docker daemon  13.06MB
+
+Step 1/5 : FROM php:7.4-apache
+ ---> c6931e453257
+Step 2/5 : RUN docker-php-ext-install pdo pdo_mysql mysqli
+ ---> Using cache
+ ---> bf3cf2e0eddd
+Step 3/5 : CMD /usr/sbin/apache2ctl -D FOREGROUND
+ ---> Using cache
+ ---> db14d2620ddc
+Step 4/5 : COPY . /var/www/html/
+ ---> 8f04006665cb
+Step 5/5 : EXPOSE 80
+ ---> Running in 7ca80bedd80f
+Removing intermediate container 7ca80bedd80f
+ ---> 6462d57f6e55
+Successfully built 6462d57f6e55
+Successfully tagged agapelee/kidsbank:latest
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Push)
+[Pipeline] sh
++ docker push agapelee/kidsbank:latest
+The push refers to repository [docker.io/agapelee/kidsbank]
+3768c5af1b43: Preparing
+29ae601e1108: Preparing
+3fcaba3cbb88: Preparing
+01f1f44a37e5: Preparing
+06416709356f: Preparing
+a42feedb9d1d: Preparing
+d12d63974f18: Preparing
+de8d83dd9fe9: Preparing
+19e51b8f5a36: Preparing
+392868e98d55: Preparing
+79e4de416d58: Preparing
+8ac190a867eb: Preparing
+049daa4cf7c1: Preparing
+5320f57e1b29: Preparing
+7e718b9c0c8c: Preparing
+a42feedb9d1d: Waiting
+d12d63974f18: Waiting
+de8d83dd9fe9: Waiting
+19e51b8f5a36: Waiting
+392868e98d55: Waiting
+79e4de416d58: Waiting
+8ac190a867eb: Waiting
+049daa4cf7c1: Waiting
+5320f57e1b29: Waiting
+7e718b9c0c8c: Waiting
+01f1f44a37e5: Layer already exists
+29ae601e1108: Layer already exists
+06416709356f: Layer already exists
+3fcaba3cbb88: Layer already exists
+a42feedb9d1d: Layer already exists
+d12d63974f18: Layer already exists
+de8d83dd9fe9: Layer already exists
+19e51b8f5a36: Layer already exists
+392868e98d55: Layer already exists
+79e4de416d58: Layer already exists
+8ac190a867eb: Layer already exists
+049daa4cf7c1: Layer already exists
+5320f57e1b29: Layer already exists
+7e718b9c0c8c: Layer already exists
+3768c5af1b43: Pushed
+latest: digest: sha256:6f6f0bb09cb42b676a8c1e7391baaa88793fa71aa94223102b06a818b9921927 size: 3456
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Remove pushed image)
+[Pipeline] sh
++ docker rmi agapelee/kidsbank:latest
+Untagged: agapelee/kidsbank:latest
+Untagged: agapelee/kidsbank@sha256:6f6f0bb09cb42b676a8c1e7391baaa88793fa71aa94223102b06a818b9921927
+Deleted: sha256:6462d57f6e55f4742a4bab353c4c8e71d44f088163c0dd8629612e0741332b09
+Deleted: sha256:8f04006665cb55bef82e62d0bfefc9ee6ed3df252be324da20cfdd9f70ee361c
+Deleted: sha256:754f2558e99d4316ca09517112a6c8fed6631ca1343bdf4d7daf1b654d577ad3
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Ansible Deploy)
+[Pipeline] ansiblePlaybook
+[KidsbankPipeline] $ /usr/bin/ansible-playbook ansible/deploy-kidsbank-webapp.yaml -i ansible/inventory
+
+PLAY [Deploy kidsbank webapp] **************************************************
+
+TASK [Gathering Facts] *********************************************************
+[0;32mok: [192.168.1.188][0m
+[0;32m[0m
+TASK [Pull kidsbank docker image] **********************************************
+[0;33mchanged: [192.168.1.188][0m
+[0;33m[0m
+TASK [Pull mysql latest image] *************************************************
+[0;33mchanged: [192.168.1.188][0m
+[0;33m[0m
+TASK [Copy k8s files to home directory] ****************************************
+[0;32mok: [192.168.1.188][0m
+[0;32m[0m
+PLAY RECAP *********************************************************************
+[0;33m192.168.1.188[0m              : [0;32mok=4   [0m [0;33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Ansible Create K8s Delpoyments)
+[Pipeline] ansiblePlaybook
+[KidsbankPipeline] $ /usr/bin/ansible-playbook ansible/create-kubernetes-deployment.yaml -i ansible/inventory
+
+PLAY [Deploy kidsbank webapp] **************************************************
+
+TASK [Gathering Facts] *********************************************************
+[0;32mok: [192.168.1.188][0m
+[0;32m[0m
+TASK [Create the web-app deployments and services] *****************************
+[0;33mchanged: [192.168.1.188][0m
+[0;33m[0m
+TASK [Update deployment with new pods if image updated] ************************
+[0;33mchanged: [192.168.1.188][0m
+[0;33m[0m
+PLAY RECAP *********************************************************************
+[0;33m192.168.1.188[0m              : [0;32mok=3   [0m [0;33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+
+

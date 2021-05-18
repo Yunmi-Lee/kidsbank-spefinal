@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+
+    stages {
+        
+        stage('Git Clone') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Yunmi-Lee/kidsbank-spefinal.git'
+            }
+        }
+        
+        stage('PHPUnit Test') {
+            steps {
+                sh 'phpunit --log-junit results/phpunit/phpunit.xml -c tests/phpunit.xml'
+            }
+        }
+        
+        stage('Docker Containerization') {
+            steps {
+                sh 'docker build -t agapelee/kidsbank:latest .'
+            }
+        }
+        
+        stage('Docker Push') {
+            steps {
+                sh 'docker push agapelee/kidsbank:latest'
+            }
+        }
+        
+        stage('Docker Remove pushed image') {
+            steps {
+                sh 'docker rmi agapelee/kidsbank:latest'
+            }
+        }
+        
+        stage('Ansible Deploy') {
+            steps {
+                ansiblePlaybook becomeUser: null, colorized: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'ansible/inventory', playbook: 'ansible/deploy-kidsbank-webapp.yaml', sudoUser: null
+            }
+        }
+        
+        stage('Ansible Create K8s Delpoyments') {
+            steps {
+                ansiblePlaybook becomeUser: null, colorized: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'ansible/inventory', playbook: 'ansible/create-kubernetes-deployment.yaml', sudoUser: null
+            }
+        }
+        
+    }
+}
+
